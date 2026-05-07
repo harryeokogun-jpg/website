@@ -1,1 +1,32 @@
+name: Deploy to GitHub Pages
 
+on:
+  push:
+    branches:
+      - main  # Runs when you push to the 'main' branch
+    paths:
+      - 'index.html' # ONLY runs if index.html was changed
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.' # Uploads everything in the root folder
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
