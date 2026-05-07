@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - main  # Runs when you push to the 'main' branch
-    paths:
-      - 'index.html' # ONLY runs if index.html was changed
+
 
 permissions:
   contents: read
